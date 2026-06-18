@@ -69,7 +69,8 @@
 </head>
 <body class="relative w-full h-full flex justify-center items-center bg-[#070a13]">
 
-    <audio id="audio-page" src="sound-page.mp3" preload="auto"></audio> <audio id="audio-shield" src="sound-shield.mp3" preload="auto"></audio>
+    <audio id="audio-page" src="sound-page.mp3" preload="auto"></audio> 
+    <audio id="audio-shield" src="sound-shield.mp3" preload="auto"></audio>
     <audio id="audio-sword" src="sound-sword.mp3" preload="auto"></audio>
     <audio id="audio-magic" src="sound-magic.mp3" preload="auto"></audio>
 
@@ -85,7 +86,7 @@
 
     <div id="story-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#141b2d] to-[#070a13] flex-col justify-start items-center p-4 z-10 overflow-hidden">
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 text-center mt-4 flex flex-col items-center gap-3 z-30">
-            <p id="story-text" class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">在宁静美好的异世界乡村，故事悄然开始……</p>
+            <p id="story-text" class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">在宁静美好的异世界乡村，故事悄延开始……</p>
             <button id="btn-story-next" class="gold-border px-6 py-1.5 rounded-full bg-[#d4af37] text-[#070a13] text-xs font-bold tracking-widest active:scale-95 transition-transform">点击观察世界</button>
         </div>
         <div class="w-full flex-1 flex flex-col gap-3 my-4 justify-center max-w-[450px] z-10">
@@ -95,23 +96,31 @@
         </div>
     </div>
 
-    <div id="box-back-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#0d1527] to-[#070a13] flex-col justify-start items-center p-4 z-10 overflow-hidden">
-        <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 text-center mt-4 flex flex-col items-center gap-3 z-30">
+    <div id="box-back-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#0d1527] to-[#070a13] flex-col justify-between items-center p-4 z-10 overflow-hidden text-center">
+        <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30 flex flex-col items-center justify-center">
             <p id="box-back-text" class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">光晕渐渐停歇，法阵中央赫然降临了一个散发着神圣植物疗愈光芒的治愈系宝盒！</p>
-            <button id="btn-box-next" class="gold-border px-6 py-1.5 rounded-full bg-[#34d399] text-[#070a13] text-xs font-bold tracking-widest active:scale-95 transition-transform">走上前去查看</button>
         </div>
-        <div class="w-full flex-1 flex items-center justify-center max-w-[450px] my-4 relative"><img src="box-back.png" class="w-full h-full object-contain gold-border rounded"></div>
+        <div class="w-full flex-1 max-h-[50vh] flex items-center justify-center my-2 relative z-10">
+            <img src="box-back.png" class="max-w-[85%] max-h-full object-contain gold-border rounded">
+        </div>
+        <div class="w-full h-20 flex justify-center items-center mb-4 z-30">
+            <button id="btn-box-next" class="gold-border px-8 py-2.5 rounded-full bg-[#34d399] text-[#070a13] text-xs font-bold tracking-widest active:scale-95 transition-transform">走上前去查看</button>
+        </div>
     </div>
 
-    <div id="box-front-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#111c24] to-[#070a13] flex-col justify-start items-center p-4 z-10 overflow-hidden text-center">
-        <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 flex flex-col items-center gap-3 z-30">
+    <div id="box-front-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#111c24] to-[#070a13] flex-col justify-between items-center p-4 z-10 overflow-hidden text-center">
+        <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30 flex flex-col items-center justify-center">
             <p class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">超能宝盒打开！三位身披香氛能量的勇者帅气登场！点击下方按钮迎击敌人！</p>
         </div>
-        <div class="w-full flex-1 flex items-center justify-center max-w-[450px] my-4 relative"><img src="box-front.png" class="w-full h-full object-contain gold-border rounded"></div>
-        <div class="w-full h-24 flex justify-center items-center mb-4 z-30"><button id="btn-to-battle" class="gold-border px-8 py-2.5 rounded-full bg-[#d4af37] text-[#070a13] text-xs font-bold tracking-widest active:scale-95 transition-transform">⚔️ 带领勇者开战！</button></div>
+        <div class="w-full flex-1 max-h-[50vh] flex items-center justify-center my-2 relative z-10">
+            <img src="box-front.png" class="max-w-[85%] max-h-full object-contain gold-border rounded">
+        </div>
+        <div class="w-full h-20 flex justify-center items-center mb-4 z-30">
+            <button id="btn-to-battle" class="gold-border px-8 py-2.5 rounded-full bg-[#d4af37] text-[#070a13] text-xs font-bold tracking-widest active:scale-95 transition-transform">⚔️ 带领勇者开战！</button>
+        </div>
     </div>
 
-    <div id="battle-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#070a13] via-[#111625] to-[#070a13] flex-col justify-start items-center p-4 z-10 overflow-hidden">
+    <div id="battle-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#070a13] via-[#111625] to-[#070a13] flex flex-col justify-between items-center p-4 z-10 overflow-hidden">
         <div class="w-full gold-border p-3 rounded-lg bg-[#070a13]/95 flex flex-col gap-2 mt-4 z-30 text-[11px] text-[#f3e5ab]">
             <div class="flex justify-between font-bold">
                 <span id="battle-tip">第一战 · 盾士回合：点击按钮抵挡细菌袭来！</span>
@@ -121,9 +130,13 @@
                 <div id="battle-energy-bar" class="w-0 h-full bg-gradient-to-r from-emerald-400 to-[#d4af37] transition-all duration-300"></div>
             </div>
         </div>
-        <div class="w-full flex-1 flex items-center justify-center max-w-[450px] my-4 relative"><img id="battle-screen-img" src="shield-1.png" class="w-full h-full object-contain gold-border rounded"></div>
+        
+        <div class="w-full flex-1 max-h-[45vh] flex items-center justify-center my-2 relative z-10">
+            <img id="battle-screen-img" src="shield-1.png" class="max-w-[90%] max-h-full object-contain gold-border rounded">
+        </div>
+        
         <div class="w-full h-24 flex justify-center items-center mb-4 z-30">
-            <button id="btn-battle-action" class="gold-border px-10 py-3 rounded-full bg-emerald-600 text-white text-sm font-black tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.5)] active:scale-90 transition-all">
+            <button id="btn-battle-action" class="gold-border px-10 py-3.5 rounded-full bg-emerald-600 text-white text-sm font-black tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.5)] active:scale-90 transition-all z-50">
                 🛡️ 盾士推盾防御 (0/3)
             </button>
         </div>
@@ -172,16 +185,14 @@
     </div>
 
     <script>
-        // 获取所有独立的音频载体
-        const audioPage = document.getElementById('audio-page');       // 📄 剧情专属
-        const audioShield = document.getElementById('audio-shield');   // 🛡️ 盾士专用
-        const audioSword = document.getElementById('audio-sword');     // ⚔️ 剑士专用
-        const audioMagic = document.getElementById('audio-magic');     // 🔮 法师/高潮专用
+        const audioPage = document.getElementById('audio-page');       
+        const audioShield = document.getElementById('audio-shield');   
+        const audioSword = document.getElementById('audio-sword');     
+        const audioMagic = document.getElementById('audio-magic');     
 
-        // 高频无延迟音频触发函数
         function playSfx(audioElement) {
             audioElement.currentTime = 0;
-            audioElement.play().catch(e => console.log("解锁网页音频权限策略:", e));
+            audioElement.play().catch(e => console.log("解锁音频:", e));
         }
 
         const startBtn = document.getElementById('start-click-area');
@@ -195,7 +206,7 @@
         const endPage = document.getElementById('end-page');
 
         startBtn.addEventListener('click', () => {
-            playSfx(audioMagic); // 启动全站音频权限
+            playSfx(audioMagic); 
             homepage.style.transition = 'opacity 0.4s'; homepage.style.opacity = '0';
             setTimeout(() => { homepage.style.display = 'none'; storyPage.classList.remove('hidden'); storyPage.classList.add('flex'); document.getElementById('panel-1').classList.add('show'); }, 400);
         });
@@ -205,20 +216,20 @@
         const storyText = document.getElementById('story-text');
         storyButton.addEventListener('click', () => {
             currentClickStep++;
-            playSfx(audioPage); // ⚡ 修复：推剧情漫画时使用轻柔的翻页/轻击音效
+            playSfx(audioPage); 
             if (currentClickStep === 1) { storyText.innerText = "轰隆！！天降大陨石污染物！美丽的草坪正被黑暗疯狂侵蚀吞噬..."; document.getElementById('panel-2').classList.add('show'); document.getElementById('village-img').classList.add('corrupted'); storyButton.innerText = "祈求神明拯救"; } 
             else if (currentClickStep === 2) { storyText.innerText = "老牧师率领全体村民在法阵前虔诚祈祷，召唤能够驱散黑暗的超能勇者！"; document.getElementById('panel-3').classList.add('show'); storyButton.innerText = "引导法阵大爆发！"; } 
             else if (currentClickStep === 3) { storyText.innerText = "法阵开始疯狂泛光！神圣的疗愈气息正在凝聚，转场即将开启！"; document.getElementById('panel-3').classList.add('magic-flash'); storyButton.disabled = true; setTimeout(() => { storyPage.style.display = 'none'; boxBackPage.classList.remove('hidden'); boxBackPage.classList.add('flex'); }, 1500); }
         });
 
         document.getElementById('btn-box-next').addEventListener('click', () => {
-            playSfx(audioPage); // ⚡ 修复：查看宝盒使用轻柔的剧情音效
+            playSfx(audioPage); 
             document.getElementById('box-back-text').innerText = "宝盒在一阵香气中发生了剧烈震动！"; document.getElementById('btn-box-next').disabled = true;
             setTimeout(() => { boxBackPage.style.display = 'none'; boxFrontPage.classList.remove('hidden'); boxFrontPage.classList.add('flex'); }, 1000);
         });
 
         document.getElementById('btn-to-battle').addEventListener('click', () => { 
-            playSfx(audioPage); // ⚡ 修复：开战前过渡属于剧情切换
+            playSfx(audioPage); 
             boxFrontPage.style.display = 'none'; battlePage.classList.remove('hidden'); battlePage.classList.add('flex'); 
         });
 
@@ -237,7 +248,7 @@
             energyCounter.innerText = `大招能量蓄力: ${Math.round(currentProgress)}%`;
 
             if (totalClicks <= 3) {
-                playSfx(audioShield); // 🛡️ 战斗状态点击：坚实沉闷的盾击碰撞！
+                playSfx(audioShield); 
                 battleImg.src = 'shield-2.png'; 
                 battleTip.innerText = `嘭！成功推盾，稳稳格挡第 ${totalClicks} 波细菌污垢！`;
                 battleBtn.innerText = `🛡️ 盾士推盾防御 (${totalClicks}/3)`;
@@ -252,7 +263,7 @@
                 }, 300);
             }
             else if (totalClicks > 3 && totalClicks <= 6) {
-                playSfx(audioSword); // ⚔️ 战斗状态点击：清脆凌厉的剑鸣出鞘！
+                playSfx(audioSword); 
                 let swordClickCount = totalClicks - 3;
                 battleImg.src = 'sword-2.png'; 
                 battleTip.innerText = `唰！10倍洁净力神剑，斩碎顽固污渍第 ${swordClickCount} 次！`;
@@ -268,7 +279,7 @@
                 }, 300);
             }
             else if (totalClicks > 6 && totalClicks <= 9) {
-                playSfx(audioMagic); // 🔮 战斗状态点击：华丽空灵的香氛魔法球爆裂！
+                playSfx(audioMagic); 
                 let mageClickCount = totalClicks - 6;
                 battleImg.src = 'mage-2.png'; 
                 battleTip.innerText = `轰！5重香氛爆香，720小时持久植物疗愈扩散第 ${mageClickCount} 次！`;
@@ -288,14 +299,14 @@
 
         // 大招爆发与闪切
         document.getElementById('btn-purify-trigger').addEventListener('click', () => {
-            playSfx(audioMagic); // 💥 高潮动作：爆开神圣大招声音
+            playSfx(audioMagic); 
             const pImg = document.getElementById('purify-screen-img');
             pImg.src = 'comic-4.png'; pImg.classList.add('magic-flash');
             setTimeout(() => {
                 pImg.src = 'comic-5.png';
                 document.getElementById('btn-purify-trigger').innerText = "去参加村民凯旋欢送会";
                 document.getElementById('btn-purify-trigger').onclick = () => { 
-                    playSfx(audioPage); // ⚡ 欢送会属于过渡剧情
+                    playSfx(audioPage); 
                     purifyPage.style.display = 'none'; rocketPage.classList.remove('hidden'); rocketPage.classList.add('flex'); 
                 };
             }, 1200);
@@ -303,7 +314,7 @@
 
         // 火箭升空
         document.getElementById('btn-launch').addEventListener('click', () => {
-            playSfx(audioMagic); // 🚀 终极升空爆响
+            playSfx(audioMagic); 
             rocketPage.classList.add('animate-launch');
             
             document.getElementById('rocket-box-container').style.transition = 'all 2.6s cubic-bezier(0.55, 0.055, 0.675, 0.19)';
