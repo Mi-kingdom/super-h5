@@ -68,6 +68,20 @@
 </head>
 <body class="relative w-full h-full flex justify-center items-center bg-[#070a13]">
 
+    <div class="absolute opacity-0 pointer-events-none w-0 h-0 overflow-hidden select-none z-0">
+        <img src="shield-1.png" preload="auto">
+        <img src="shield-2.png" preload="auto">
+        <img src="sword-1.png" preload="auto">
+        <img src="sword-2.png" preload="auto">
+        <img src="mage-1.png" preload="auto">
+        <img src="mage-2.png" preload="auto">
+        <img src="comic-4.png" preload="auto">
+        <img src="comic-5.png" preload="auto">
+        <img src="box-rocket.png" preload="auto">
+        <img src="super-icon.png" preload="auto">
+        <img src="product.png" preload="auto">
+    </div>
+
     <audio id="audio-page" src="sound-page.mp3" preload="auto" muted></audio> 
     <audio id="audio-shield" src="sound-shield.mp3" preload="auto" muted></audio>
     <audio id="audio-sword" src="sound-sword.mp3" preload="auto" muted></audio>
@@ -197,7 +211,6 @@
         const audioSword = document.getElementById('audio-sword');     
         const audioMagic = document.getElementById('audio-magic');     
 
-        // 🛠️ 微信特调机制：首次点击时将所有音频静音取消，彻底唤醒多音轨
         let hasUnlockedAudio = false;
         function playSfx(audioElement) {
             audioElement.muted = false;
@@ -224,7 +237,7 @@
         const endPage = document.getElementById('end-page');
 
         startBtn.addEventListener('click', () => {
-            unlockAllAudio(); // 🛠️ 微信关键解锁
+            unlockAllAudio(); 
             playSfx(audioMagic); 
             homepage.style.transition = 'opacity 0.4s'; homepage.style.opacity = '0';
             setTimeout(() => { homepage.style.display = 'none'; storyPage.classList.remove('hidden'); storyPage.classList.add('flex'); document.getElementById('panel-1').classList.add('show'); }, 400);
@@ -252,6 +265,7 @@
             boxFrontPage.style.display = 'none'; battlePage.classList.remove('hidden'); battlePage.classList.add('flex'); 
         });
 
+        // 九连点系统
         let totalClicks = 0; 
         const battleBtn = document.getElementById('btn-battle-action');
         const battleImg = document.getElementById('battle-screen-img');
@@ -270,15 +284,15 @@
                 battleImg.src = 'shield-2.png'; 
                 battleTip.innerText = `嘭！成功推盾，稳稳格挡第 ${totalClicks} 波细菌污垢！`;
                 battleBtn.innerText = `🛡️ 盾士推盾防御 (${totalClicks}/3)`;
-                setTimeout(() => {
-                    if (totalClicks < 3) { battleImg.src = 'shield-1.png'; battleTip.innerText = "下一波细菌正高频袭来，继续顶住！"; } 
-                    else if (totalClicks === 3) {
-                        battleImg.src = 'sword-1.png';
+                
+                if (totalClicks === 3) {
+                    setTimeout(() => {
+                        battleImg.src = 'sword-1.png'; // 已经预加载，秒切
                         battleTip.innerText = "第二战 · 剑士回合：看准时机，连续刺击清除污渍！";
                         battleBtn.innerText = "⚔️ 剑士出剑突刺 (0/3)";
                         battleBtn.className = "gold-border px-12 py-3.5 rounded-full bg-red-600 text-white text-sm font-black tracking-widest shadow-[0_0_20px_rgba(220,38,38,0.6)] active:scale-90 transition-all";
-                    }
-                }, 300);
+                    }, 400);
+                }
             }
             else if (totalClicks > 3 && totalClicks <= 6) {
                 playSfx(audioSword); 
@@ -286,15 +300,15 @@
                 battleImg.src = 'sword-2.png'; 
                 battleTip.innerText = `唰！10倍洁净力神剑，斩碎顽固污渍第 ${swordClickCount} 次！`;
                 battleBtn.innerText = `⚔️ 剑士出剑突刺 (${swordClickCount}/3)`;
-                setTimeout(() => {
-                    if (totalClicks < 6) { battleImg.src = 'sword-1.png'; battleTip.innerText = "残余污垢还在顽抗，利剑再度出鞘！"; } 
-                    else if (totalClicks === 6) {
-                        battleImg.src = 'mage-1.png';
+                
+                if (totalClicks === 6) {
+                    setTimeout(() => {
+                        battleImg.src = 'mage-1.png'; // 已经预加载，秒切
                         battleTip.innerText = "最终战 · 法师回合：高频连点，唤醒5重香氛爆发中和异味！";
                         battleBtn.innerText = "🔮 法师爆发香氛魔法 (0/3)";
                         battleBtn.className = "gold-border px-12 py-3.5 rounded-full bg-purple-600 text-white text-sm font-black tracking-widest shadow-[0_0_20px_rgba(147,51,234,0.6)] active:scale-90 transition-all";
-                    }
-                }, 300);
+                    }, 400);
+                }
             }
             else if (totalClicks > 6 && totalClicks <= 9) {
                 playSfx(audioMagic); 
@@ -302,7 +316,6 @@
                 battleImg.src = 'mage-2.png'; 
                 battleTip.innerText = `轰！5重香氛爆香，720小时持久植物疗愈扩散第 ${mageClickCount} 次！`;
                 battleBtn.innerText = `🔮 法师爆发香氛魔法 (${mageClickCount}/3)`;
-                setTimeout(() => { if (totalClicks < 9) { battleImg.src = 'mage-1.png'; battleTip.innerText = "香气开始席卷战场，积攒最后的能量，冲刺！"; } }, 300);
             }
 
             if (totalClicks === 9) {
@@ -317,31 +330,4 @@
 
         document.getElementById('btn-purify-trigger').addEventListener('click', () => {
             playSfx(audioMagic); 
-            const pImg = document.getElementById('purify-screen-img');
-            pImg.src = 'comic-4.png'; pImg.classList.add('magic-flash');
-            setTimeout(() => {
-                pImg.src = 'comic-5.png';
-                document.getElementById('btn-purify-trigger').innerText = "去参加村民凯旋欢送会";
-                document.getElementById('btn-purify-trigger').onclick = () => { 
-                    playSfx(audioPage); 
-                    purifyPage.style.display = 'none'; rocketPage.classList.remove('hidden'); rocketPage.classList.add('flex'); 
-                };
-            }, 1200);
-        });
-
-        document.getElementById('btn-launch').addEventListener('click', () => {
-            playSfx(audioMagic); 
-            rocketPage.classList.add('animate-launch');
-            
-            document.getElementById('rocket-box-container').style.transition = 'all 2.6s cubic-bezier(0.55, 0.055, 0.675, 0.19)';
-            document.getElementById('rocket-box-container').style.transform = 'translateY(-150vh) scale(0.2)';
-            document.getElementById('rocket-box-container').style.opacity = '0';
-
-            setTimeout(() => {
-                rocketPage.style.transition = 'opacity 0.4s ease'; rocketPage.style.opacity = '0';
-                setTimeout(() => { rocketPage.style.display = 'none'; endPage.classList.remove('hidden'); endPage.classList.add('flex'); }, 400);
-            }, 3000);
-        });
-    </script>
-</body>
-</html>
+            const
