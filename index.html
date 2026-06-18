@@ -20,13 +20,22 @@
         .pollute-filter { transition: filter 1.5s ease-in-out; }
         .pollute-filter.corrupted { filter: brightness(0.4) sepia(0.5) hue-rotate(320deg); }
         
-        @keyframes launchSpeed { 0% { background-position: bottom center; } 100% { background-position: top center; } }
+        @keyframes launchSpeed {
+            0% { background-position: bottom center; }
+            100% { background-position: top center; }
+        }
         .animate-launch { animation: launchSpeed 3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards; }
 
-        @keyframes iconDrop { 0% { transform: translateY(-200%) scale(0.5); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes iconDrop {
+            0% { transform: translateY(-200%) scale(0.5); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
         .animate-icon-drop { animation: iconDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; animation-delay: 0.2s; }
 
-        @keyframes productDrop { 0% { transform: translateY(-150%) scale(0.6); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+        @keyframes productDrop {
+            0% { transform: translateY(-150%) scale(0.6); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
         .animate-product-drop { animation: productDrop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; animation-delay: 1s; }
 
         .bg-endpage { background-image: url('background-end.png'); background-size: cover; background-position: center; }
@@ -34,13 +43,11 @@
 </head>
 <body class="relative w-full h-full flex justify-center items-center bg-[#070a13]">
 
-    <!-- ==================== 🔊 音频载体 ==================== -->
     <audio id="audio-page" src="sound-page.mp3" preload="auto"></audio> 
     <audio id="audio-shield" src="sound-shield.mp3" preload="auto"></audio>
     <audio id="audio-sword" src="sound-sword.mp3" preload="auto"></audio>
     <audio id="audio-magic" src="sound-magic.mp3" preload="auto"></audio>
 
-    <!-- ==================== 1. 首页 ==================== -->
     <div id="homepage" class="bg-homepage absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 overflow-hidden z-20 text-center">
         <div class="w-full h-24"></div>
         <div class="w-full flex-1 flex items-center justify-center relative">
@@ -51,7 +58,6 @@
         </div>
     </div>
 
-    <!-- ==================== 2. 第二页：动态漫画剧情 ==================== -->
     <div id="story-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#141b2d] to-[#070a13] flex flex-col justify-between items-center p-4 z-10 overflow-hidden">
         <div class="w-full gold-border p-3 rounded-lg bg-[#070a13]/90 text-center mt-2 flex flex-col items-center gap-2 z-30 shrink-0">
             <p id="story-text" class="text-xs text-[#f3e5ab] font-medium tracking-wide">在宁静美好的异世界乡村，故事悄然开始……</p>
@@ -72,7 +78,6 @@
         <div class="w-full h-2 shrink-0"></div>
     </div>
 
-    <!-- ==================== 3. 第三页：超能宝盒降临 ==================== -->
     <div id="box-back-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#0d1527] to-[#070a13] flex flex-col justify-between items-center p-4 z-10 overflow-hidden text-center">
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30">
             <p id="box-back-text" class="text-xs text-[#f3e5ab] font-medium leading-relaxed">光晕渐渐停歇，法阵中央赫然降临了一个治愈系宝盒！</p>
@@ -85,7 +90,6 @@
         </div>
     </div>
 
-    <!-- ==================== 4. 第四页：正面打开-勇者登场 ==================== -->
     <div id="box-front-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#111c24] to-[#070a13] flex flex-col justify-between items-center p-4 z-10 overflow-hidden text-center">
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30">
             <p class="text-xs text-[#f3e5ab] font-medium">超能宝盒打开！三位身披香氛能量的勇者帅气登场！</p>
@@ -98,7 +102,6 @@
         </div>
     </div>
 
-    <!-- ==================== 5. 第五页：核心交互格斗战场 (🛠️ 重磅重构：全图片堆叠无缝显示舱) ==================== -->
     <div id="battle-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#070a13] via-[#111625] to-[#070a13] flex flex-col justify-between items-center p-4 z-10 overflow-hidden">
         <div class="w-full gold-border p-3 rounded-lg bg-[#070a13]/95 flex flex-col gap-2 mt-4 z-30 text-[11px] text-[#f3e5ab] shrink-0">
             <div class="flex justify-between font-bold">
@@ -110,14 +113,8 @@
             </div>
         </div>
         
-        <!-- 🛠️ 放弃单个 <img> 标签切换路径，改用同位图层通过 opacity 控制切换，100% 解决微信卡动作问题 -->
-        <div class="w-full flex-1 max-h-[44vh] flex items-center justify-center my-2 relative z-10 gold-border rounded-lg overflow-hidden bg-[#0a1120] max-w-[420px]">
-            <img id="img-shield-1" src="shield-1.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-100">
-            <img id="img-shield-2" src="shield-2.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-0">
-            <img id="img-sword-1" src="sword-1.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-0">
-            <img id="img-sword-2" src="sword-2.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-0">
-            <img id="img-mage-1" src="mage-1.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-0">
-            <img id="img-mage-2" src="mage-2.png" class="absolute inset-0 w-full h-full object-contain transition-opacity duration-75 opacity-0">
+        <div class="w-full flex-1 max-h-[44vh] flex items-center justify-center my-2 relative z-10">
+            <img id="battle-screen-img" src="shield-1.png" class="max-w-[95%] max-h-full object-contain gold-border rounded-lg shadow-xl">
         </div>
         
         <div class="w-full py-3 flex justify-center items-center mb-3 z-30 shrink-0">
@@ -127,7 +124,6 @@
         </div>
     </div>
 
-    <!-- ==================== 6. 第六页：合力大招与发光切换 ==================== -->
     <div id="purify-page" class="hidden absolute inset-0 w-full h-full bg-gradient-to-b from-[#070a13] to-[#12241a] flex-col justify-start items-center p-4 z-10 overflow-hidden text-center">
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 flex flex-col items-center gap-3 z-30">
             <p id="purify-text" class="text-xs text-[#f3e5ab] font-medium">能量全满！点击按钮释放超能终极招式！</p>
@@ -138,7 +134,6 @@
         </div>
     </div>
 
-    <!-- ==================== 7. 第七页：凯旋与火箭升空 ==================== -->
     <div id="rocket-page" class="hidden rocket-bg-effect absolute inset-0 w-full h-full flex flex-col justify-between items-center p-4 z-10 overflow-hidden text-center bg-[#070a13]">
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 flex flex-col items-center gap-3 z-30">
             <p id="rocket-text" class="text-xs text-[#f3e5ab] font-medium">危机彻底解除！勇者得胜回归，超能宝盒准备升空！</p>
@@ -150,7 +145,6 @@
         <div class="w-full h-6"></div>
     </div>
 
-    <!-- ==================== 8. 第八页：终极硬广定格结算页 ==================== -->
     <div id="end-page" class="hidden bg-endpage absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 z-20 text-center text-[#f3e5ab] overflow-hidden">
         <div class="mt-2 flex flex-col items-center relative z-30 w-full">
             <img src="super-icon.png" alt="超能大图标" class="w-20 h-20 object-contain animate-icon-drop mb-1 drop-shadow-[0_0_15px_#d4af37]">
@@ -172,15 +166,18 @@
         <button onclick="location.reload()" class="gold-border mb-4 px-6 py-1.5 rounded-full bg-transparent text-[#d4af37] text-xs font-bold hover:bg-[#d4af37]/10 transition-colors z-30">🔄 重新体验异界疗愈之旅</button>
     </div>
 
-    <!-- 业务驱动脚本 -->
     <script>
         const audioPage = document.getElementById('audio-page');       
         const audioShield = document.getElementById('audio-shield');   
         const audioSword = document.getElementById('audio-sword');     
         const audioMagic = document.getElementById('audio-magic');     
 
+        // 恢复单声音、高频清空触发逻辑（彻底解决卡死和丢音效）
         function playSfx(audioElement) {
-            try { audioElement.currentTime = 0; audioElement.play(); } catch(e) { console.log(e); }
+            try {
+                audioElement.currentTime = 0;
+                audioElement.play();
+            } catch(e) { console.log(e); }
         }
 
         const startBtn = document.getElementById('start-click-area');
@@ -192,14 +189,6 @@
         const purifyPage = document.getElementById('purify-page');
         const rocketPage = document.getElementById('rocket-page');
         const endPage = document.getElementById('end-page');
-
-        // 获取新重构的对战图像 DOM 矩阵
-        const imgShield1 = document.getElementById('img-shield-1');
-        const imgShield2 = document.getElementById('img-shield-2');
-        const imgSword1 = document.getElementById('img-sword-1');
-        const imgSword2 = document.getElementById('img-sword-2');
-        const imgMage1 = document.getElementById('img-mage-1');
-        const imgMage2 = document.getElementById('img-mage-2');
 
         startBtn.addEventListener('click', () => {
             playSfx(audioMagic); 
@@ -228,9 +217,10 @@
             playSfx(audioPage); boxFrontPage.style.display = 'none'; battlePage.classList.remove('hidden'); battlePage.classList.add('flex'); 
         });
 
-        // ==================== ⚙️ 纯净响应式不换源九连击逻辑 ====================
+        // ==================== ⚔️ 九连点核心逻辑（回归最初、最流畅版本） ====================
         let totalClicks = 0; 
         const battleBtn = document.getElementById('btn-battle-action');
+        const battleImg = document.getElementById('battle-screen-img');
         const battleTip = document.getElementById('battle-tip');
         const energyCounter = document.getElementById('energy-counter');
         const energyBar = document.getElementById('battle-energy-bar');
@@ -243,23 +233,13 @@
 
             if (totalClicks <= 3) {
                 playSfx(audioShield); 
-                // 🛠️ 核心改变：0秒瞬间闪切图层可见度，微信避开图片下载，100% 显现动作转换！
-                imgShield1.classList.replace('opacity-100', 'opacity-0');
-                imgShield2.classList.replace('opacity-0', 'opacity-100');
-                
+                battleImg.src = 'shield-2.png'; 
                 battleTip.innerText = `嘭！成功推盾，稳稳格挡第 ${totalClicks} 波细菌污垢！`;
                 battleBtn.innerText = `🛡️ 盾士推盾防御 (${totalClicks}/3)`;
-                
                 setTimeout(() => {
-                    if (totalClicks < 3) {
-                        imgShield2.classList.replace('opacity-100', 'opacity-0');
-                        imgShield1.classList.replace('opacity-0', 'opacity-100');
-                    } else if (totalClicks === 3) {
-                        // 交棒剑士：关闭所有盾士图层，点亮剑士常态
-                        imgShield2.classList.add('opacity-0');
-                        imgShield1.classList.add('opacity-0');
-                        imgSword1.classList.replace('opacity-0', 'opacity-100');
-                        
+                    if (totalClicks < 3) { battleImg.src = 'shield-1.png'; } 
+                    else if (totalClicks === 3) {
+                        battleImg.src = 'sword-1.png';
                         battleTip.innerText = "第二战 · 剑士回合：看准时机，连续刺击清除污渍！";
                         battleBtn.innerText = "⚔️ 剑士出剑突刺 (0/3)";
                         battleBtn.className = "gold-border px-12 py-3.5 rounded-full bg-red-600 text-white text-sm font-black tracking-widest active:scale-90 transition-all";
@@ -269,21 +249,13 @@
             else if (totalClicks > 3 && totalClicks <= 6) {
                 playSfx(audioSword); 
                 let swordClickCount = totalClicks - 3;
-                imgSword1.classList.replace('opacity-100', 'opacity-0');
-                imgSword2.classList.replace('opacity-0', 'opacity-100');
-                
+                battleImg.src = 'sword-2.png'; 
                 battleTip.innerText = `唰！10倍洁净力神剑，斩碎顽固污渍第 ${swordClickCount} 次！`;
                 battleBtn.innerText = `⚔️ 剑士出剑突刺 (${swordClickCount}/3)`;
-                
                 setTimeout(() => {
-                    if (totalClicks < 6) {
-                        imgSword2.classList.replace('opacity-100', 'opacity-0');
-                        imgSword1.classList.replace('opacity-0', 'opacity-100');
-                    } else if (totalClicks === 6) {
-                        imgSword2.classList.add('opacity-0');
-                        imgSword1.classList.add('opacity-0');
-                        imgMage1.classList.replace('opacity-0', 'opacity-100');
-                        
+                    if (totalClicks < 6) { battleImg.src = 'sword-1.png'; } 
+                    else if (totalClicks === 6) {
+                        battleImg.src = 'mage-1.png';
                         battleTip.innerText = "最终战 · 法师回合：高频连点，唤醒5重香氛爆发中和异味！";
                         battleBtn.innerText = "🔮 法师爆发香氛魔法 (0/3)";
                         battleBtn.className = "gold-border px-12 py-3.5 rounded-full bg-purple-600 text-white text-sm font-black tracking-widest active:scale-90 transition-all";
@@ -293,18 +265,10 @@
             else if (totalClicks > 6 && totalClicks <= 9) {
                 playSfx(audioMagic); 
                 let mageClickCount = totalClicks - 6;
-                imgMage1.classList.replace('opacity-100', 'opacity-0');
-                imgMage2.classList.replace('opacity-0', 'opacity-100');
-                
+                battleImg.src = 'mage-2.png'; 
                 battleTip.innerText = `轰！5重香氛爆香，720小时持久植物疗愈扩散第 ${mageClickCount} 次！`;
                 battleBtn.innerText = `🔮 法师爆发香氛魔法 (${mageClickCount}/3)`;
-                
-                setTimeout(() => {
-                    if (totalClicks < 9) {
-                        imgMage2.classList.replace('opacity-100', 'opacity-0');
-                        imgMage1.classList.replace('opacity-0', 'opacity-100');
-                    }
-                }, 200);
+                setTimeout(() => { if (totalClicks < 9) { battleImg.src = 'mage-1.png'; } }, 200);
             }
 
             if (totalClicks === 9) {
