@@ -63,16 +63,15 @@
         }
         .animate-product-drop { animation: productDrop 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; animation-delay: 1.4s; }
 
-        /* 最后一页品牌专属大结局底图 */
         .bg-endpage { background-image: url('background-end.png'); background-size: cover; background-position: center; }
     </style>
 </head>
 <body class="relative w-full h-full flex justify-center items-center bg-[#070a13]">
 
-    <audio id="audio-page" src="sound-page.mp3" preload="auto"></audio> 
-    <audio id="audio-shield" src="sound-shield.mp3" preload="auto"></audio>
-    <audio id="audio-sword" src="sound-sword.mp3" preload="auto"></audio>
-    <audio id="audio-magic" src="sound-magic.mp3" preload="auto"></audio>
+    <audio id="audio-page" src="sound-page.mp3" preload="auto" muted></audio> 
+    <audio id="audio-shield" src="sound-shield.mp3" preload="auto" muted></audio>
+    <audio id="audio-sword" src="sound-sword.mp3" preload="auto" muted></audio>
+    <audio id="audio-magic" src="sound-magic.mp3" preload="auto" muted></audio>
 
     <div id="homepage" class="bg-homepage absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 overflow-hidden z-20 text-center">
         <div class="w-full h-24"></div>
@@ -101,7 +100,6 @@
                 <img id="summon-img" src="comic-3.png" class="w-full h-full object-cover">
             </div>
         </div>
-        
         <div class="w-full h-6 shrink-0"></div>
     </div>
 
@@ -109,7 +107,7 @@
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30 flex flex-col items-center justify-center">
             <p id="box-back-text" class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">光晕渐渐停歇，法阵中央赫然降临了一个散发着神圣植物疗愈光芒的治愈系宝盒！</p>
         </div>
-        <div class="w-full flex-1 max-h-[50vh] flex items-center justify-center my-2 relative z-10">
+        <div class="w-full flex-1 max-h-[48vh] flex items-center justify-center my-2 relative z-10">
             <img src="box-back.png" class="max-w-[85%] max-h-full object-contain gold-border rounded">
         </div>
         <div class="w-full h-20 flex justify-center items-center mb-4 z-30">
@@ -121,7 +119,7 @@
         <div class="w-full gold-border p-4 rounded-lg bg-[#070a13]/90 mt-4 z-30 flex flex-col items-center justify-center">
             <p class="text-xs text-[#f3e5ab] font-medium tracking-wide leading-relaxed">超能宝盒打开！三位身披香氛能量的勇者帅气登场！点击下方按钮迎击敌人！</p>
         </div>
-        <div class="w-full flex-1 max-h-[50vh] flex items-center justify-center my-2 relative z-10">
+        <div class="w-full flex-1 max-h-[48vh] flex items-center justify-center my-2 relative z-10">
             <img src="box-front.png" class="max-w-[85%] max-h-full object-contain gold-border rounded">
         </div>
         <div class="w-full h-20 flex justify-center items-center mb-4 z-30">
@@ -140,11 +138,11 @@
             </div>
         </div>
         
-        <div class="w-full flex-1 max-h-[50vh] flex items-center justify-center my-3 relative z-10">
-            <img id="battle-screen-img" src="shield-1.png" class="w-[92%] h-full object-contain gold-border rounded-lg shadow-xl">
+        <div class="w-full flex-1 max-h-[42vh] flex items-center justify-center my-2 relative z-10">
+            <img id="battle-screen-img" src="shield-1.png" class="max-w-[95%] max-h-full object-contain gold-border rounded-lg shadow-xl">
         </div>
         
-        <div class="w-full py-4 flex justify-center items-center mb-2 z-30 shrink-0">
+        <div class="w-full py-3 flex justify-center items-center mb-3 z-30 shrink-0">
             <button id="btn-battle-action" class="gold-border px-12 py-3.5 rounded-full bg-emerald-600 text-white text-sm font-black tracking-widest shadow-[0_0_20px_rgba(16,185,129,0.6)] active:scale-90 transition-all z-50">
                 🛡️ 盾士推盾防御 (0/3)
             </button>
@@ -199,9 +197,20 @@
         const audioSword = document.getElementById('audio-sword');     
         const audioMagic = document.getElementById('audio-magic');     
 
+        // 🛠️ 微信特调机制：首次点击时将所有音频静音取消，彻底唤醒多音轨
+        let hasUnlockedAudio = false;
         function playSfx(audioElement) {
+            audioElement.muted = false;
             audioElement.currentTime = 0;
-            audioElement.play().catch(e => console.log("解锁音频:", e));
+            audioElement.play().catch(e => console.log(e));
+        }
+        function unlockAllAudio() {
+            if (hasUnlockedAudio) return;
+            [audioPage, audioShield, audioSword, audioMagic].forEach(a => {
+                a.muted = false;
+                a.play().then(() => { a.pause(); a.currentTime = 0; }).catch(e => console.log(e));
+            });
+            hasUnlockedAudio = true;
         }
 
         const startBtn = document.getElementById('start-click-area');
@@ -215,6 +224,7 @@
         const endPage = document.getElementById('end-page');
 
         startBtn.addEventListener('click', () => {
+            unlockAllAudio(); // 🛠️ 微信关键解锁
             playSfx(audioMagic); 
             homepage.style.transition = 'opacity 0.4s'; homepage.style.opacity = '0';
             setTimeout(() => { homepage.style.display = 'none'; storyPage.classList.remove('hidden'); storyPage.classList.add('flex'); document.getElementById('panel-1').classList.add('show'); }, 400);
